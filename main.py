@@ -20,7 +20,7 @@ async def on_ready():
 # Command kiểu prefix: !hello
 @bot.command()
 async def hello(ctx):
-    await ctx.send("👋 Hello! Bot đang hoạt động nè")
+    await ctx.send("👋 Hello! Bot đang hoạt động nè đồ ngu")
 
 # Slash command kiểu modern: /ping
 @bot.tree.command(name="ping", description="Kiểm tra độ trễ của bot")
