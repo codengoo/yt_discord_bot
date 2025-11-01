@@ -3,6 +3,10 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
+# Import commands
+from commands.hello import setup_hello
+from commands.ping import setup_ping
+
 # Load token từ .env
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -17,15 +21,9 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 async def on_ready():
     print(f"✅ Logged in as {bot.user}")
 
-# Command kiểu prefix: !hello
-@bot.command()
-async def hello(ctx):
-    await ctx.send("👋 Hello! Bot đang hoạt động nè đồ ngu")
-
-# Slash command kiểu modern: /ping
-@bot.tree.command(name="ping", description="Kiểm tra độ trễ của bot")
-async def ping(interaction: discord.Interaction):
-    await interaction.response.send_message(f"🏓 Pong! Latency: {round(bot.latency * 1000)}ms")
+# Đăng ký các command
+setup_hello(bot)
+setup_ping(bot)
 
 # Sync slash command khi start
 @bot.event
